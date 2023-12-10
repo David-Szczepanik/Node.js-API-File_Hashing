@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLYGJCXHJD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DLYGJCXHJD');
+  </script>
+  <script src="https://kit.fontawesome.com/6d3cb9a4a1.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styleFinal.css">
+  <title>File Upload</title>
+</head>
+
+<body>
+
+<header>
+  <nav class="topnav">
+    <a href="/">HOME</a>
+    <div class="dropdown">
+      <button class="dropbtn">NODE.JS</button>
+      <div class="dropdown-content">
+        <a href="/app.html">APP</a>
+        <a href="/database.html">DATABASE</a>
+      </div>
+    </div>
+    <a href="https://github.com/David-Szczepanik">GITHUB</a>
+    <a href="https://www.linkedin.com/in/david-szczepanik/">LINKEDIN</a>
+    <img src="images/sun.png" id="icon" onclick="themeToggle()" alt="dark mode icon">
+  </nav>
+</header>
+<main>
+  <h1>Upload your file</h1>
+
+  <div class="wrapper" id="droparea">
+    <form action>
+      <input type="file" id="fileInput" hidden>
+      <i class="fa-solid fa-file-arrow-up fa-beat"></i>
+      <p>Drag or Browse File to Upload</p>
+    </form>
+  </div>
+
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="hashResult"></div>
+</main>
+
+<footer>
+  <p>&copy; 2023</p>
+</footer>
+<script src="/script.js"></script>
+<script src="/drag&Drop.js"></script>
+<script src="dark-mode.js"></script>
+</body>
+</html>

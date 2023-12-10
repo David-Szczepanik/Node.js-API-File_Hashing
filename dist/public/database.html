@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLYGJCXHJD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DLYGJCXHJD');
+    </script>
+    <link rel="stylesheet" href="styleFinal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Database Files</title>
+</head>
+
+<body>
+<header>
+    <nav class="topnav">
+        <a href="/">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Node.js</button>
+            <div class="dropdown-content">
+                <a href="/app.html">App</a>
+                <a href="/database.html">Database</a>
+            </div>
+        </div>
+        <a href="https://github.com/David-Szczepanik">Github</a>
+        <a href="https://www.linkedin.com/in/david-szczepanik/">LinkedIn</a>
+        <img src="images/sun.png" id="icon" onclick="themeToggle()" alt="dark mode icon">
+    </nav>
+</header>
+<main>
+    <h1>Database files</h1>
+
+<table id="fileTable">
+    <thead>
+    <tr>
+        <th>File Name</th>
+        <th>File Size (bytes)</th>
+        <th>File Hash</th>
+    </tr>
+    </thead>
+    <tbody id="fileList"></tbody>
+</table>
+</main>
+<footer>
+    <p>2023</p>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      // Fetch data from the server
+      const response = await fetch('/databaseJSON');
+      const files = await response.json();
+
+      // Get the <tbody> element by its id
+      const fileListElement = document.getElementById('fileList');
+
+      // Dynamically generate table rows and cells and append them to the <tbody> element
+      files.forEach(file => {
+        const row = fileListElement.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+
+        cell1.textContent = file.fileName;
+        cell2.textContent = file.fileSize;
+        cell3.textContent = file.fileHash;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>
+<script src="dark-mode.js"></script>
+</body>
+</html>
