@@ -9,10 +9,11 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
+    "startold": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
     "start-js": "node dist/index.js",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "start-inspect": "node --inspect=0.0.0.0:9229 dist/index.js"
   },
   "dependencies": {
     "@types/sequelize": "^4.28.19",

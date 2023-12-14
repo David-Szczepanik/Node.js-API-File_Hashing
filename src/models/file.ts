@@ -1,5 +1,4 @@
 'use strict';
-
 import { Model, DataTypes, Sequelize } from 'sequelize';
 
 interface FileAttributes {

@@ -12,12 +12,10 @@ touch .gitignore .env
 npx sequelize init
 npm i --save-dev @types/express
 
+Template:
 npx sequelize-cli model:generate --name User --attributes fileName:string,fileSize:integer,fileHash:string
 
 npm i uuid
 npm i @types/uuid -D
 
 ---
-
-After converting to js `=>` TypeError: Cannot read properties of undefined
-

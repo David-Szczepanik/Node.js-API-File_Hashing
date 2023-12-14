@@ -47,7 +47,7 @@
 </table>
 </main>
 <footer>
-    <p>2023</p>
+    <p>&copy; 2023</p>
 </footer>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
@@ -56,10 +56,9 @@
       const response = await fetch('/databaseJSON');
       const files = await response.json();
 
-      // Get the <tbody> element by its id
       const fileListElement = document.getElementById('fileList');
 
-      // Dynamically generate table rows and cells and append them to the <tbody> element
+      // Generate table rows and cells and append them to <tbody> element
       files.forEach(file => {
         const row = fileListElement.insertRow();
         const cell1 = row.insertCell(0);
@@ -74,6 +73,7 @@
       console.error(error);
     }
   });
+
 </script>
 <script src="dark-mode.js"></script>
 </body>

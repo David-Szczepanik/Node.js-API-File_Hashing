@@ -23,7 +23,13 @@ if (droparea && fileInput) {
 
         for (let i = 0; i < files.length; i++) {
             const file: File = files[i];
-            hashFile(file);
+            hashFile(file)
+                .then(() => {
+                    console.log('File hashing completed successfully.');
+                })
+                .catch((error) => {
+                    console.error('Error during file hashing:', error);
+                });
         }
     });
 
@@ -34,7 +40,13 @@ if (droparea && fileInput) {
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 const file: File = files[i];
-                hashFile(file);
+                hashFile(file)
+                    .then(() => {
+                        console.log('File hashing completed successfully.');
+                    })
+                    .catch((error) => {
+                        console.error('Error during file hashing:', error);
+                    });
             }
         }
     });

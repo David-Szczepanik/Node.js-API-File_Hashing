@@ -1,19 +1,10 @@
-document.getElementById('hashButton')?.addEventListener('click', () => {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    const file = fileInput.files?.[0];
-    if (file) {
-        hashFile(file);
-    } else {
-        alert('Please choose a file.');
-    }
-});
-
 async function hashFile(file: File): Promise<void> {
     const progressBar = document.getElementById('progress-bar') as HTMLElement;
+    const percentageElement = document.getElementById('progress-percentage') as HTMLElement; // New element
     const hashResultContainer = document.getElementById('hashResult') as HTMLElement;
 
     const fileSize = file.size;
-    const CHUNK_SIZE = 1024 * 1024; // 1 MB chunks
+    const CHUNK_SIZE = 1024 * 1024 * 5; // 5 MB Chunks
 
     let offset = 0;
 
@@ -28,12 +19,15 @@ async function hashFile(file: File): Promise<void> {
             const response = await sendChunk(chunkData);
 
             const progress = offset / fileSize;
+
             progressBar.style.width = `${progress * 100}%`;
+            percentageElement.innerText = `${Math.floor(progress * 100)}%`;
 
             if (offset < fileSize) {
                 await processChunk();
             } else {
                 progressBar.style.width = '100%';
+                percentageElement.innerText = '100%';
                 hashResultContainer.innerHTML = `File Name: ${file.name}<br>File Size: ${fileSize} bytes<br>File Hash: ${response.hash}`;
                 saveBackup(file, response.hash);
             }

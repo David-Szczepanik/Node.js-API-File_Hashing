@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLYGJCXHJD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-DLYGJCXHJD');
+    </script>
+    <link rel="stylesheet" href="styleFinal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .hidden-content {
+            display: none;
+        }
+
+        .toggle-btn:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<header>
+    <nav class="topnav">
+        <a href="/">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Node.js</button>
+            <div class="dropdown-content">
+                <a href="app.html">App</a>
+                <a href="database.html">Database</a>
+            </div>
+        </div>
+        <a href="https://github.com/David-Szczepanik">Github</a>
+        <a href="https://www.linkedin.com/in/david-szczepanik/">LinkedIn</a>
+        <img src="images/sun.png" id="icon" onclick="themeToggle()" alt="dark mode icon">
+    </nav>
+</header>
+
+<main>
+    <div class="error-container">
+        <h1>Error %statusCode%</h1>
+        <p id="errorDetails">%errorMessage%</p>
+        <div class="toggle-btn" onclick="toggleContent()">Show More</div>
+        <div id="additional-info" class="hidden-content">
+            <h3>Error stack:</h3>
+            <p>%errorStack%</p>
+            <p>%error%</p>
+        </div>
+    </div>
+    <footer>
+        <p>2023</p>
+    </footer>
+    <script src="dark-mode.js"></script>
+    <script>
+      function toggleContent() {
+        const content = document.getElementById("additional-info");
+        content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
+      }
+    </script>
+</main>
+</html>

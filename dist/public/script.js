@@ -8,24 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
-(_a = document.getElementById('hashButton')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
-    var _a;
-    const fileInput = document.getElementById('fileInput');
-    const file = (_a = fileInput.files) === null || _a === void 0 ? void 0 : _a[0];
-    if (file) {
-        hashFile(file);
-    }
-    else {
-        alert('Please choose a file.');
-    }
-});
 function hashFile(file) {
     return __awaiter(this, void 0, void 0, function* () {
         const progressBar = document.getElementById('progress-bar');
+        const percentageElement = document.getElementById('progress-percentage'); // New element
         const hashResultContainer = document.getElementById('hashResult');
         const fileSize = file.size;
-        const CHUNK_SIZE = 1024 * 1024; // 1 MB chunks
+        const CHUNK_SIZE = 1024 * 1024 * 5; // 5 MB Chunks
         let offset = 0;
         function processChunk() {
             return __awaiter(this, void 0, void 0, function* () {
@@ -38,11 +27,13 @@ function hashFile(file) {
                         const response = yield sendChunk(chunkData);
                         const progress = offset / fileSize;
                         progressBar.style.width = `${progress * 100}%`;
+                        percentageElement.innerText = `${Math.floor(progress * 100)}%`;
                         if (offset < fileSize) {
                             yield processChunk();
                         }
                         else {
                             progressBar.style.width = '100%';
+                            percentageElement.innerText = '100%';
                             hashResultContainer.innerHTML = `File Name: ${file.name}<br>File Size: ${fileSize} bytes<br>File Hash: ${response.hash}`;
                             saveBackup(file, response.hash);
                         }

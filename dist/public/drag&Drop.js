@@ -19,7 +19,13 @@ if (droparea && fileInput) {
         const files = ((_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.files) || new DataTransfer().files;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            hashFile(file);
+            hashFile(file)
+                .then(() => {
+                console.log('File hashing completed successfully.');
+            })
+                .catch((error) => {
+                console.error('Error during file hashing:', error);
+            });
         }
     });
     fileInput.addEventListener("change", (e) => {
@@ -28,7 +34,13 @@ if (droparea && fileInput) {
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                hashFile(file);
+                hashFile(file)
+                    .then(() => {
+                    console.log('File hashing completed successfully.');
+                })
+                    .catch((error) => {
+                    console.error('Error during file hashing:', error);
+                });
             }
         }
     });

@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "d39eb9ad-b1b6-4bd8-bfd5-6ce752cc4146",
+		"name": "Project-BI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31398393"
+	},
+	"item": [
+		{
+			"name": "databaseJSON",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/databaseJSON",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"databaseJSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/doesntExist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/doesntExist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doesntExist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
