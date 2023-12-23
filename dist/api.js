@@ -18,6 +18,7 @@ const fs_1 = require("fs");
 const asyncErrorHandler_1 = require("./Utils/asyncErrorHandler");
 const CustomError_1 = __importDefault(require("./Utils/CustomError"));
 const models_1 = __importDefault(require("./models/models"));
+const upload_1 = require("./upload");
 exports.respondIndex = (0, asyncErrorHandler_1.asyncErrorHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const indexPath = path_1.default.resolve(__dirname, 'public', 'index.html');
     console.log(indexPath);
@@ -45,42 +46,47 @@ exports.respondDatabaseJSON = (0, asyncErrorHandler_1.asyncErrorHandler)((req, r
         next(error);
     }
 }));
-exports.respondUpload = (0, asyncErrorHandler_1.asyncErrorHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.respondUpload = (0, asyncErrorHandler_1.asyncErrorHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { fileName, fileSize, fileHash } = req.body;
-        // => DB
-        const newFile = yield models_1.default.File.create({
-            fileName,
-            fileSize,
-            fileHash,
-        });
-        const backupJsonPath = 'backup.json';
-        const backupTxtPath = 'backup.txt';
-        // => JSON
-        let existingContent;
-        try {
-            const existingJsonData = yield fs_1.promises.readFile(backupJsonPath, 'utf-8');
-            existingContent = JSON.parse(existingJsonData);
+        const files = yield (0, upload_1.hashFile)(req, next);
+        const newFiles = [];
+        for (const { fileSize, fileName, fileHash } of files) {
+            // => DB
+            const newFile = yield models_1.default.File.create({
+                fileName,
+                fileSize,
+                fileHash,
+            });
+            const backupJsonPath = 'backup.json';
+            const backupTxtPath = 'backup.txt';
+            // => JSON
+            let existingContent;
+            try {
+                const existingJsonData = yield fs_1.promises.readFile(backupJsonPath, 'utf-8');
+                existingContent = JSON.parse(existingJsonData);
+            }
+            catch (readError) {
+                // Create JSON if it doesn't exist
+                existingContent = [];
+            }
+            existingContent.push(newFile);
+            yield fs_1.promises.writeFile(backupJsonPath, JSON.stringify(existingContent, null, 2));
+            // => TXT
+            const currentDate = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+            const currentTime = new Date().toLocaleTimeString('cs-CZ'); // HH:MM:SS
+            const textContent = `File Name: ${fileName}\nFile Size: ${fileSize} bytes\nSHA-1 Hash: ${fileHash}\nDate: ${currentDate}-${currentTime}\n\n`;
+            yield fs_1.promises.appendFile(backupTxtPath, textContent);
+            console.log('File information saved to backup.json and backup.txt');
+            newFiles.push(newFile);
         }
-        catch (readError) {
-            // Create JSON if it doesn't exist
-            existingContent = [];
-        }
-        existingContent.push(newFile);
-        yield fs_1.promises.writeFile(backupJsonPath, JSON.stringify(existingContent, null, 2));
-        // => TXT
-        const currentDate = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-        const currentTime = new Date().toLocaleTimeString('cs-CZ'); // HH:MM:SS
-        const textContent = `File Name: ${fileName}\nFile Size: ${fileSize} bytes\nSHA-1 Hash: ${fileHash}\nDate: ${currentDate}-${currentTime}\n\n`;
-        yield fs_1.promises.appendFile(backupTxtPath, textContent);
-        console.log('File information saved to backup.json and backup.txt');
         res.status(201).json({
-            message: 'File uploaded successfully',
-            file: newFile,
+            status: 'Success',
+            message: 'Files uploaded successfully',
+            files: newFiles,
         });
     }
     catch (err) {
-        console.error('Error uploading file:', err);
+        console.error('Error uploading files:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }));

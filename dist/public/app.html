@@ -7,7 +7,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-DLYGJCXHJD');
   </script>
   <script src="https://kit.fontawesome.com/6d3cb9a4a1.js" crossorigin="anonymous"></script>
@@ -36,27 +35,19 @@
 </header>
 <main>
   <h1>Upload your file</h1>
+<div>
 
-  <div class="wrapper" id="droparea">
-    <form action>
-      <input type="file" id="fileInput" hidden>
-      <i class="fa-solid fa-file-arrow-up fa-beat"></i>
-      <p>Drag or Browse File to Upload</p>
-    </form>
-  </div>
+    <input type="file" id="fileInput" />
+    <button onclick="handleFile()">Upload</button>
 
-  <div id="progress-bar-container">
-    <div id="progress-percentage"></div>
-    <div id="progress-bar"></div>
   </div>
-  <div id="hashResult"></div>
 </main>
 
 <footer>
   <p>&copy; 2023</p>
 </footer>
 <script src="/script.js"></script>
-<script src="/drag&Drop.js"></script>
+<script src="/dragDrop.js"></script>
 <script src="dark-mode.js"></script>
 </body>
 </html>

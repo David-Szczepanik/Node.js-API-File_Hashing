@@ -12,8 +12,8 @@ module.exports = {
     },
     "test": {
         "username": "root",
-        "password": null,
-        "database": "database_test",
+        "password": "admin",
+        "database": "sequelizeFiles",
         "host": "127.0.0.1",
         "dialect": "mysql"
     },

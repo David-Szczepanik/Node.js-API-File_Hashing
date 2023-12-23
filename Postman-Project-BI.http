@@ -1,13 +1,13 @@
 # Project-BI
 
 ###
+# @name index.html
+GET http://localhost:3000/index.html
+
+###
 # @name databaseJSON
-GET http://localhost:8080/databaseJSON
+GET http://localhost:3000/databaseJSON
 
 ###
-# @name http://localhost:8080/doesntExist
-GET http://localhost:8080/doesntExist
-
-###
-# @name http://localhost:8080/index.html
-GET http://localhost:8080/index.html
+# @name doesntExist
+GET http://localhost:3000/doesntExist
