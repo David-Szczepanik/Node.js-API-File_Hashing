@@ -22,17 +22,19 @@ const hashFile = (req, next) => __awaiter(void 0, void 0, void 0, function* () {
         const files = [];
         return new Promise((resolve) => {
             busboy.on('file', (name, file) => {
-                let fileName = name;
-                let fileSize = 0;
-                let fileHash = '';
+                const fileData = {
+                    fileName: name || '',
+                    fileSize: 0,
+                    fileHash: '',
+                };
                 const hash = crypto_1.default.createHash('sha1');
                 file.on('data', (data) => {
-                    fileSize += data.length;
+                    fileData.fileSize += data.length;
                     hash.update(data);
                 })
                     .on('close', () => {
-                    fileHash = hash.digest('hex');
-                    files.push({ fileName, fileSize, fileHash });
+                    fileData.fileHash = hash.digest('hex');
+                    files.push(fileData);
                 });
             });
             busboy.on('close', () => {

@@ -12,19 +12,20 @@ const hashFile = async (req: IncomingMessage, next: NextFunction): Promise<fileI
 
         return new Promise((resolve) => {
             busboy.on('file', (name: string, file: any) => {
-                let fileName: string = name;
-                let fileSize: number = 0;
-                let fileHash: string = '';
-
+                const fileData: fileInfo = {
+                    fileName: name || '',
+                    fileSize: 0,
+                    fileHash: '',
+                };
                 const hash = crypto.createHash('sha1');
 
                 file.on('data', (data: any) => {
-                    fileSize += data.length;
+                    fileData.fileSize += data.length;
                     hash.update(data);
                 })
                     .on('close', () => {
-                    fileHash = hash.digest('hex');
-                    files.push({ fileName, fileSize, fileHash });
+                    fileData.fileHash = hash.digest('hex');
+                    files.push(fileData);
                 });
             });
 
