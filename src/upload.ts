@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import { IncomingMessage } from 'http';
 import CustomError from "./Utils/CustomError";
 import {NextFunction} from "express";
-import {fileInfo} from "./public/dragDrop";
+import {fileInfo} from "./public/uploadFromClient";
 
 const hashFile = async (req: IncomingMessage, next: NextFunction): Promise<fileInfo[]> => {
     try {
