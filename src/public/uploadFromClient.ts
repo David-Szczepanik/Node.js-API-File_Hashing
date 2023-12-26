@@ -1,8 +1,8 @@
-export interface fileInfo {
+export type fileInfo = {
     fileName: string;
     fileSize: number;
     fileHash: string;
-}
+};
 
 async function handleFile() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
