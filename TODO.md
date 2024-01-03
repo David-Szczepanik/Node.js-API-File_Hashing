@@ -1,13 +1,23 @@
 ## TODO
-- [x] Express server
 - [x] Calculate size
 - [x] SHA-1 hash
 - [x] backup to txt =>
 - [x] backup to json
+- [x] Rewrite in TypeScript
+
 ## Server
+- [x] Express server
 - [x] can't write into a file `=>` chmod a+rw backup.json, ls -l backup.json
 - [x] Debugger: --inspect=0.0.0.0:9229
 - [x] Create Firewall Rule for tcp:2992 `=>` chrome://inspect
+
+## Database
+- [x] MySQL integration 
+  - [x] Implement Sequelize
+  - [x] Move database to separate hosting PlanetScale
+  - ~~TypeError: Cannot read properties of undefined (reading 'findAll')~~
+  - [ ] Validation for example maxLength for fileName + send error to front end
+     
 ---
   - ~~can't get right formatting - trailing comma~~
 - [x] separate into modules
@@ -23,15 +33,6 @@
   - [x] `=>` HTTPS certbot
   - [ ] Automate renewal
   - [ ] FTP Filezilla to Google Cloud => SSH
-  
-- [x] Rewrite in TypeScript
-
-## Database
-- [x] MySQL integration 
-  - [x] Implement Sequelize
-  - [x] Move database to separate hosting PlanetScale
-  - ~~TypeError: Cannot read properties of undefined (reading 'findAll')~~
-  - [ ] Validation for example maxLength for fileName + send error to front end
 
 ---
 ## Front end
