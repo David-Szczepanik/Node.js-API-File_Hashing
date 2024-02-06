@@ -1,4 +1,4 @@
-The project utilizes:
+The project utilizes: <br>
 Node.js Express server <br>
 Sequelize to send data to MySQL database<br>
 ---
