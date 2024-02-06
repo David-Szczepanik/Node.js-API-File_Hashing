@@ -1,7 +1,6 @@
-# Node.js
-Express <br>
-Sequelize <br>
-MySQL
+The project utilizes:
+Node.js Express server <br>
+Sequelize to send data to MySQL database<br>
 ---
 
 ## Install
