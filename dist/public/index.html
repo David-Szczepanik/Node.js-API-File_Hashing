@@ -1,42 +1,35 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLYGJCXHJD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-DLYGJCXHJD');
-  </script>
-  <link rel="stylesheet" href="styleFinal.css">
-  <title>Personal Website</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="https://kit.fontawesome.com/6d3cb9a4a1.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styleFinal.css">
+  <title>File Upload</title>
 </head>
 
 <body>
-  <header>
-    <nav class="topnav">
-      <a href="/">Home</a>
-      <div class="dropdown">
-        <button class="dropbtn">Node.js</button>
-        <div class="dropdown-content">
-          <a href="/app.html">App</a>
-          <a href="/database.html">Database</a>
-        </div>
-      </div>
-      <a href="https://github.com/David-Szczepanik">Github</a>
-      <a href="https://www.linkedin.com/in/david-szczepanik/">LinkedIn</a>
-      <img src="images/sun.png" id="icon" onclick="themeToggle()" alt="dark mode icon">
-    </nav>
-  </header>
-  <main>
-    <h1><a href="https://szczepanik.cz">Szczepanik.cz</a></h1>
-  </main>
-<footer>
-  <p>&copy; 2023</p>
-</footer>
-  <script src="dark-mode.js"></script>
+
+<header>
+  <nav class="topnav">
+    <a href="/">App</a>
+    <a href="/database.html">Database</a>
+    <a href="/errorForRandomPage">Error</a>
+    <a href="https://github.com/David-Szczepanik/Node.js-API-File_Hashing">Github</a>
+    <img src="images/sun.png" id="icon" onclick="themeToggle()" alt="dark mode icon">
+  </nav>
+</header>
+<main>
+  <h1>Upload your file</h1>
+  <div>
+
+    <input type="file" id="fileInput"/>
+    <button onclick="handleFile()">Upload</button>
+
+  </div>
+</main>
+
+<script src="/uploadFromClient.js"></script>
+<script src="dark-mode.js"></script>
 </body>
 </html>

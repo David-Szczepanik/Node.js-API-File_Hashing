@@ -6,11 +6,11 @@ console.log(process.env.DB_USER);
 
 module.exports = {
   "development": {
-    "username": process.env.DB_USER,
-    "password": process.env.DB_PASS,
-    "database": process.env.DB_NAME,
-    "host": process.env.HOST,
-    "dialect": "mysql"
+    "username": 'leaflet_user',
+    "password": 'WzvPALzeUowaMa03aGHI6mDKzXmEP9Hb',
+    "database": 'nodehasj',
+    "host": 'dpg-cpars8m3e1ms739uojkg-a.frankfurt-postgres.render.com',
+    "dialect": 'postgres'
   },
   "test": {
     "username": "root",

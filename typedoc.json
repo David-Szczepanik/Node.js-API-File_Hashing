@@ -1,0 +1,27 @@
+{
+  "entryPoints": [
+    "src/*",
+    "src/Controllers/*",
+    "src/Utils/*",
+    "src/public/*"
+  ],
+  "out": "docs",
+  "tsconfig": "./tsconfig.json",
+  "exclude": [
+    "**/__tests__/**",
+    "**/*.spec.ts"
+  ],
+  "includeVersion": true,
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeExternals": false,
+  "excludeInternal": false,
+  "readme": "none",
+  "name": "Node.js API File Hashing",
+  "$schema": "https://typedoc.org/schema.json",
+  "plugin": [
+    "@mxssfd/typedoc-theme"
+  ],
+  "theme": "my-theme"
+}
+

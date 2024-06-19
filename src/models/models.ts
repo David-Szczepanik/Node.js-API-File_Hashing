@@ -9,29 +9,31 @@ const basename = path.basename(__filename);
 const db: any = {};
 
 // LOCALHOST
-const env = process.env.NODE_ENV || 'test';
-const config = require(__dirname + '/../config/config')[env];
-
-let sequelize: any;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
-
-// PLANETSCALE
-// const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//   dialectOptions: {
-//     ssl: {
-//       rejectUnauthorized: true
-//     }
-//   }
-// });
+// const env = process.env.NODE_ENV || 'test';
+// const config = require(__dirname + '/../config/config')[env];
 //
-// sequelize.authenticate()
-//   .then(() => console.log('Connected to PlanetScale!'))
-//   .catch((error: any) => console.error('Unable to connect to the database:', error));
-//
+// let sequelize: any;
+// if (config.use_env_variable) {
+//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+// } else {
+//   sequelize = new Sequelize(config.database, config.username, config.password, config);
+// }
+
+// Render DB
+const sequelize = new Sequelize('leaflet', 'leaflet_user', 'WzvPALzeUowaMa03aGHI6mDKzXmEP9Hb', {
+  host: 'dpg-cpars8m3e1ms739uojkg-a.frankfurt-postgres.render.com',
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: true
+    }
+  }
+});
+
+sequelize.authenticate()
+  .then(() => console.log('Connected to Render DB!'))
+  .catch((error: any) => console.error('Unable to connect to the database:', error));
+
 // sequelize.close();
 
 
