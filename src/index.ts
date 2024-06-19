@@ -8,6 +8,7 @@ import {handleErrorHTML, handleErrorJSON} from './Controllers/errorController';
 import {respondIndex, respondDatabaseJSON, respondUpload} from './api';
 import fs from "fs";
 import * as https from "node:https";
+import fileUpload from 'express-fileupload';
 
 /**
  * @class App
@@ -74,8 +75,14 @@ class App {
   private initializeMiddlewares() {
     this.app.use(morgan('dev'));
     this.app.use(cors());
-    this.app.use(express.json({limit: '5000mb'}));
     this.app.use(express.static(path.join(__dirname, '..', 'dist', 'public')));
+
+
+    this.app.use(fileUpload({
+      limits: {fileSize: 50 * 1024 * 1024},
+    }));
+
+    this.app.use(express.json());
   }
 
   /**
