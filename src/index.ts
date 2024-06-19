@@ -6,6 +6,8 @@ import morgan from 'morgan';
 import CustomError from "./Utils/CustomError";
 import {handleErrorHTML, handleErrorJSON} from './Controllers/errorController';
 import {respondIndex, respondDatabaseJSON, respondUpload} from './api';
+import fs from "fs";
+import * as https from "node:https";
 
 /**
  * @class App
@@ -107,10 +109,25 @@ class App {
    * @description Starts the Express application.
    * @public
    */
+//   public listen() {
+//     db.sequelize.sync().then(() => {
+//       this.app.listen(this.port, () => {
+//         console.log(`Server running at http://localhost:${this.port}`);
+//       });
+//     });
+//   }
+// }
+
+
   public listen() {
     db.sequelize.sync().then(() => {
-      this.app.listen(this.port, () => {
-        console.log(`Server running at http://localhost:${this.port}`);
+      const options = {
+        key: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/fullchain.pem')
+      };
+
+      https.createServer(options, this.app).listen(this.port, () => {
+        console.log(`Server running at https://localhost:${this.port}`);
       });
     });
   }
