@@ -57,7 +57,7 @@ class App {
    */
   constructor(port?: number) {
     this.app = express();
-    this.port = port || 8080;
+    this.port = port || 5000;
 
     this.initializeMiddlewares();
     this.initializeRoutes();
@@ -121,5 +121,5 @@ export default App;
 /**
  * @description Creates an instance of the App class and starts the Express application.
  */
-const app = new App(8080);
+const app = new App(5000);
 app.listen();
