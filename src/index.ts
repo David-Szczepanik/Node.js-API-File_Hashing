@@ -107,8 +107,8 @@ class App {
    * @private
    */
   private initializeErrorHandling() {
-    this.app.use(handleErrorHTML);
-    // this.app.use(handleErrorJSON);
+    // this.app.use(handleErrorHTML);
+    this.app.use(handleErrorJSON);
   }
 
   /**
@@ -116,29 +116,31 @@ class App {
    * @description Starts the Express application.
    * @public
    */
-//   public listen() {
-//     db.sequelize.sync().then(() => {
-//       this.app.listen(this.port, () => {
-//         console.log(`Server running at http://localhost:${this.port}`);
-//       });
-//     });
-//   }
-// }
 
-
+// HTTP
   public listen() {
     db.sequelize.sync().then(() => {
-      const options = {
-        key: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/fullchain.pem')
-      };
-
-      https.createServer(options, this.app).listen(this.port, () => {
-        console.log(`Server running at https://localhost:${this.port}`);
+      this.app.listen(this.port, () => {
+        console.log(`Server running at http://localhost:${this.port}`);
       });
     });
   }
 }
+
+// HTTPS
+//   public listen() {
+//     db.sequelize.sync().then(() => {
+//       const options = {
+//         key: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/privkey.pem'),
+//         cert: fs.readFileSync('/etc/letsencrypt/live/szczepanik.cz/fullchain.pem')
+//       };
+//
+//       https.createServer(options, this.app).listen(this.port, () => {
+//         console.log(`Server running at https://localhost:${this.port}`);
+//       });
+//     });
+//   }
+// }
 
 export default App;
 

@@ -7,9 +7,9 @@ console.log(process.env.DB_USER);
 module.exports = {
   "development": {
     "username": 'leaflet_user',
-    "password": 'WzvPALzeUowaMa03aGHI6mDKzXmEP9Hb',
-    "database": 'nodehasj',
-    "host": 'dpg-cpars8m3e1ms739uojkg-a.frankfurt-postgres.render.com',
+    "password": 'PbJGtMcE8DGs480CR7WnIvsJqcfi03mU',
+    "database": 'nodehash',
+    "host": 'dpg-cpul9glds78s73dvegi0-a.frankfurt-postgres.render.com',
     "dialect": 'postgres'
   },
   "test": {

@@ -20,8 +20,8 @@ const db: any = {};
 // }
 
 // Render DB
-const sequelize = new Sequelize('leaflet', 'leaflet_user', 'WzvPALzeUowaMa03aGHI6mDKzXmEP9Hb', {
-  host: 'dpg-cpars8m3e1ms739uojkg-a.frankfurt-postgres.render.com',
+const sequelize = new Sequelize('leaflet_tzz5', 'leaflet_user', 'PbJGtMcE8DGs480CR7WnIvsJqcfi03mU', {
+  host: 'dpg-cpul9glds78s73dvegi0-a.frankfurt-postgres.render.com',
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
